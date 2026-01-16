@@ -1,0 +1,290 @@
+/**
+ * A CTO Status Report Styling
+ * Professional branding for PDF status reports
+ */
+
+/* ============================================
+   CSS Variables - A CTO Brand Colors
+   ============================================ */
+:root {
+  --acto-navy: #1a365d;
+  --acto-blue: #2b6cb0;
+  --acto-light-blue: #4299e1;
+  --acto-accent: #38a169;
+  --acto-gray-dark: #2d3748;
+  --acto-gray: #4a5568;
+  --acto-gray-light: #718096;
+  --acto-gray-lighter: #e2e8f0;
+  --acto-background: #f7fafc;
+  --acto-white: #ffffff;
+
+  /* Status colors */
+  --status-green: #38a169;
+  --status-yellow: #d69e2e;
+  --status-red: #e53e3e;
+}
+
+/* ============================================
+   Base Document Styling
+   ============================================ */
+body {
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 11pt;
+  line-height: 1.5;
+  color: var(--acto-gray-dark);
+  background: var(--acto-white);
+}
+
+/* ============================================
+   Typography
+   ============================================ */
+h1 {
+  color: var(--acto-navy);
+  font-size: 22pt;
+  font-weight: 700;
+  border-bottom: 3px solid var(--acto-blue);
+  padding-bottom: 10px;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+h2 {
+  color: #0000cc;
+  font-size: 12pt;
+  font-weight: 700;
+  margin-top: 20px;
+  margin-bottom: 8px;
+  padding: 4px 0;
+  border-bottom: none;
+}
+
+h3 {
+  color: var(--acto-blue);
+  font-size: 12pt;
+  font-weight: 600;
+  margin-top: 18px;
+  margin-bottom: 8px;
+}
+
+p {
+  margin-bottom: 10px;
+}
+
+strong {
+  color: var(--acto-gray-dark);
+}
+
+/* ============================================
+   Tables
+   ============================================ */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 10pt;
+  border: 1px solid #000;
+}
+
+thead {
+  background: var(--acto-navy);
+  color: var(--acto-white);
+}
+
+th {
+  padding: 8px 10px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 10pt;
+  border: 1px solid #000;
+}
+
+td {
+  padding: 8px 10px;
+  border: 1px solid #000;
+  vertical-align: top;
+}
+
+/* Status cells - left aligned */
+td:nth-child(2),
+td:nth-child(3) {
+  text-align: left;
+  font-weight: bold;
+}
+
+/* First column bold for status tables */
+td:first-child {
+  font-weight: 600;
+}
+
+tbody tr:nth-child(even) {
+  background: var(--acto-background);
+}
+
+/* ============================================
+   Status Cell Styling (Green/Yellow/Red)
+   ============================================ */
+/* Use italic (*text*) for Green status */
+td em {
+  font-style: normal;
+  background-color: #00ff00;
+  padding: 4px 12px;
+  display: inline-block;
+  font-weight: bold;
+}
+
+/* Use bold (**text**) for Yellow/At Risk status */
+td strong {
+  background-color: #ffff00;
+  padding: 4px 12px;
+  display: inline-block;
+  font-weight: bold;
+}
+
+/* Use bold+italic (***text***) for Red/Delayed status */
+td em strong,
+td strong em {
+  background-color: #ff6666;
+  padding: 4px 12px;
+  display: inline-block;
+  font-weight: bold;
+}
+
+/* ============================================
+   Lists
+   ============================================ */
+ul, ol {
+  margin: 12px 0;
+  padding-left: 24px;
+}
+
+li {
+  margin-bottom: 6px;
+}
+
+li::marker {
+  color: var(--acto-blue);
+}
+
+/* ============================================
+   Horizontal Rules
+   ============================================ */
+hr {
+  border: none;
+  border-top: 1px solid var(--acto-gray-lighter);
+  margin: 20px 0;
+}
+
+/* ============================================
+   Status Indicators (Emoji-based)
+   ============================================ */
+
+/* Code blocks for any technical details */
+code {
+  background: var(--acto-background);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 9pt;
+  color: var(--acto-gray-dark);
+}
+
+pre {
+  background: var(--acto-gray-dark);
+  color: #e2e8f0;
+  padding: 16px;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-size: 9pt;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  color: inherit;
+}
+
+/* ============================================
+   Blockquotes (for callouts/notes)
+   ============================================ */
+blockquote {
+  border-left: 4px solid var(--acto-blue);
+  margin: 16px 0;
+  padding: 12px 16px;
+  background: var(--acto-background);
+  color: var(--acto-gray);
+  font-style: italic;
+}
+
+blockquote p {
+  margin: 0;
+}
+
+/* ============================================
+   Links
+   ============================================ */
+a {
+  color: var(--acto-blue);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ============================================
+   Page Break Helpers
+   ============================================ */
+.page-break {
+  page-break-after: always;
+}
+
+.no-break {
+  page-break-inside: avoid;
+}
+
+/* Keep tables together when possible */
+table {
+  page-break-inside: avoid;
+}
+
+/* Keep headings with their content */
+h1, h2, h3 {
+  page-break-after: avoid;
+}
+
+/* ============================================
+   Executive Summary First Page
+   ============================================ */
+/* Style the first section specially */
+body > h1:first-of-type {
+  text-align: left;
+  font-size: 22pt;
+  border-bottom: none;
+  margin-bottom: 8px;
+}
+
+/* Project metadata styling */
+body > p:first-of-type,
+body > p:nth-of-type(2),
+body > p:nth-of-type(3) {
+  text-align: left;
+  margin-bottom: 4px;
+}
+
+/* ============================================
+   Print Optimizations
+   ============================================ */
+@media print {
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  tr {
+    page-break-inside: avoid;
+  }
+}

@@ -1,0 +1,206 @@
+/* Fluent MedOps — document stylesheet for md-to-pdf
+   Warm-clinical: warm paper, deep chart navy, one teal accent, lime for gains only.
+   Source Serif 4 (display) · Archivo (body/UI) · IBM Plex Mono (eyebrows/figures). */
+
+:root {
+  --navy: #0B1F2A;
+  --navy-raised: #123342;
+  --teal: #1F8A8A;
+  --lime: #C9E265;
+  --paper: #FAF7F2;
+  --paper-deep: #F1ECE3;
+  --hairline: #D8D2C7;
+  --alert: #A8503C;
+  --ink: #0B1F2A;
+  --ink-soft: #33474F;
+  --ink-muted: #6A7A80;
+
+  --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", "Consolas", "Courier New", monospace;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink-soft);
+  font-family: var(--sans);
+  font-size: 11pt;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+}
+
+p { max-width: 62ch; text-wrap: pretty; margin: 0 0 11px; }
+strong { color: var(--ink); font-weight: 600; }
+em { font-style: italic; color: var(--ink-soft); }
+a { color: var(--teal); text-decoration: none; }
+
+/* Headings — Source Serif 4 */
+h1, h2, h3, h4 { font-family: var(--serif); color: var(--ink); font-weight: 700; }
+h2 {
+  font-size: 19pt; line-height: 1.15; letter-spacing: -.01em; font-weight: 600;
+  margin: 30px 0 10px; max-width: 30ch; text-wrap: balance;
+  padding-top: 20px; border-top: 1px solid var(--hairline);
+}
+h2:first-of-type { border-top: 0; padding-top: 0; }
+h3 { font-size: 13pt; font-weight: 600; margin: 20px 0 7px; color: var(--navy-raised); }
+
+/* Mono eyebrows via bold-run convention not needed; we use explicit classes below. */
+
+/* ---------------- Masthead (page 1 cover band) ---------------- */
+.masthead {
+  background: var(--navy);
+  color: var(--paper);
+  border-radius: 20px;
+  padding: 34px 36px 30px;
+  margin: 0 0 26px;
+  position: relative;
+  overflow: hidden;
+}
+.masthead .wordmark {
+  font-family: var(--serif); font-size: 15pt; font-weight: 600; color: var(--paper);
+  letter-spacing: -.01em; margin: 0 0 22px;
+}
+.masthead .wordmark b { color: var(--teal); font-weight: 600; }
+.masthead .eyebrow { color: #8FB9B9; }
+.masthead h1 {
+  font-family: var(--serif); font-weight: 700; color: var(--paper);
+  font-size: 30pt; line-height: 1.06; letter-spacing: -.015em;
+  margin: 0 0 14px; max-width: 20ch; text-wrap: balance;
+}
+.masthead .lede { color: #D6D0C6; font-size: 12.5pt; max-width: 56ch; margin: 0 0 20px; line-height: 1.5; }
+.masthead .meta {
+  font-family: var(--mono); font-size: 8pt; color: #9FB0B4; letter-spacing: .04em;
+  line-height: 1.9; border-top: 1px solid rgba(255,255,255,.14); padding-top: 13px; margin: 0;
+}
+.masthead .meta b { color: #D6D0C6; font-weight: 400; }
+/* flow motif — left-aligned rounded bars shortening downward */
+.flow { position: absolute; right: 30px; top: 30px; display: flex; flex-direction: column; gap: 6px; }
+.flow span { height: 7px; border-radius: 4px; background: var(--teal); display: block; }
+.flow span:nth-child(1) { width: 64px; }
+.flow span:nth-child(2) { width: 48px; }
+.flow span:nth-child(3) { width: 34px; opacity: .7; }
+.flow span:nth-child(4) { width: 20px; background: var(--lime); opacity: .9; }
+
+/* ---------------- Eyebrows / labels ---------------- */
+.eyebrow {
+  font-family: var(--mono); font-size: 8.5pt; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--teal); margin: 0 0 8px; font-weight: 500;
+}
+.eyebrow .n { color: var(--ink-muted); }
+
+/* ---------------- Callouts (3px teal TOP rule; no left bars per brand) ---------------- */
+.principles { display: flex; flex-direction: column; gap: 12px; margin: 16px 0; }
+.principle {
+  background: var(--paper-deep); border: 1px solid var(--hairline); border-top: 3px solid var(--teal);
+  border-radius: 16px; padding: 16px 20px;
+}
+.principle .num {
+  font-family: var(--mono); font-size: 8.5pt; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--teal); display: block; margin-bottom: 5px; font-weight: 500;
+}
+.principle p { margin: 0; max-width: none; }
+
+.result {
+  background: var(--paper-deep); border: 1px solid var(--hairline); border-top: 3px solid var(--navy);
+  border-radius: 16px; padding: 16px 20px; margin: 18px 0 0;
+}
+.result .tag {
+  font-family: var(--mono); font-size: 8pt; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--navy); font-weight: 600; display: inline-block; margin-bottom: 6px;
+  background: var(--lime); border-radius: 999px; padding: 2px 10px;
+}
+.result p { margin: 0; max-width: none; }
+
+/* ---------------- Tables ---------------- */
+table {
+  border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 9.5pt;
+  background: var(--paper); border: 1px solid var(--hairline); border-radius: 12px;
+  overflow: hidden;
+}
+caption { caption-side: top; text-align: left; padding: 0 0 8px; }
+th, td { text-align: left; padding: 7px 12px; border-bottom: 1px solid var(--hairline); vertical-align: top; }
+thead th {
+  font-family: var(--mono); font-size: 7.5pt; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--ink-muted); font-weight: 500; background: var(--paper-deep);
+  border-top: 3px solid var(--teal);
+}
+tbody tr:last-child td { border-bottom: 0; }
+td:first-child, th:first-child { padding-left: 16px; }
+/* right-align numeric columns (Debit/Credit/Code); mono figures */
+th:nth-child(n+2), td:nth-child(n+2) { font-variant-numeric: tabular-nums; }
+.je table td:nth-child(2), .je table td:nth-child(3),
+.je table th:nth-child(2), .je table th:nth-child(3) { text-align: right; font-family: var(--mono); white-space: nowrap; }
+td strong { color: var(--navy); }
+code { font-family: var(--mono); font-size: 9pt; color: var(--navy-raised); background: var(--paper-deep); padding: 1px 5px; border-radius: 6px; }
+
+/* Journal-entry step label */
+.je { margin: 16px 0 4px; }
+.je .label {
+  font-family: var(--serif); font-weight: 600; color: var(--ink); font-size: 12.5pt;
+  margin: 0 0 6px; display: flex; align-items: baseline; gap: 9px;
+}
+.je .label .step {
+  font-family: var(--mono); font-size: 8pt; font-weight: 500; color: var(--teal);
+  border: 1px solid var(--hairline); border-radius: 999px; padding: 1px 9px; text-transform: uppercase; letter-spacing: .08em;
+}
+
+/* ---------------- Questions ---------------- */
+ol.q { list-style: none; counter-reset: q; padding: 0; margin: 16px 0 0; }
+ol.q > li {
+  counter-increment: q; position: relative; padding: 14px 0 14px 46px;
+  border-bottom: 1px solid var(--hairline);
+}
+ol.q > li:last-child { border-bottom: 0; }
+ol.q > li::before {
+  content: counter(q, decimal-leading-zero);
+  position: absolute; left: 0; top: 15px;
+  font-family: var(--mono); font-size: 10pt; font-weight: 500; color: var(--teal);
+}
+ol.q .qt { font-family: var(--serif); font-weight: 600; color: var(--ink); font-size: 12pt; }
+ol.q p { margin: 6px 0 0; max-width: 60ch; font-size: 10.5pt; }
+.pill {
+  font-family: var(--mono); font-size: 7.5pt; letter-spacing: .1em; text-transform: uppercase;
+  font-weight: 500; padding: 2px 9px; border-radius: 999px; margin-left: 8px; white-space: nowrap;
+  background: var(--lime); color: var(--navy);
+}
+.opts { margin: 11px 0 0; display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center;
+  font-family: var(--sans); font-size: 10pt; color: var(--ink-soft); }
+.opt { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
+.opt .box { width: 11px; height: 11px; border: 1.5px solid var(--ink-muted); border-radius: 3px;
+  display: inline-block; flex: none; }
+.opt.on .box { background: var(--teal); border-color: var(--teal); }
+/* write-in fields (Notes / Trigger) — a mono label and a hairline rule to write on */
+.field-row { display: flex; align-items: baseline; gap: 12px; margin: 11px 0 0; }
+.field-row .lab { font-family: var(--mono); font-size: 8pt; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--ink-muted); white-space: nowrap; }
+.field-row .rule { flex: 1; border-bottom: 1px solid var(--hairline); height: 13px; }
+
+/* ---------------- Ordered next-steps ---------------- */
+ol.next { counter-reset: s; list-style: none; padding: 0; margin: 12px 0; }
+ol.next li { counter-increment: s; position: relative; padding: 0 0 10px 34px; max-width: 62ch; }
+ol.next li::before {
+  content: counter(s); position: absolute; left: 0; top: -1px;
+  font-family: var(--serif); font-weight: 700; color: var(--teal); font-size: 14pt;
+}
+
+/* ---------------- Footer block (in-body) ---------------- */
+.signoff {
+  margin: 30px 0 0; background: var(--navy); color: var(--paper);
+  border-radius: 20px; padding: 26px 30px;
+}
+.signoff .tagline { font-family: var(--serif); font-weight: 600; font-size: 15pt; color: var(--paper); margin: 0 0 12px; letter-spacing: -.01em; }
+.signoff .legal {
+  font-family: var(--mono); font-size: 8pt; color: #9FB0B4; letter-spacing: .03em; line-height: 1.9;
+  border-top: 1px solid rgba(255,255,255,.14); padding-top: 12px; margin: 0;
+}
+
+hr { border: 0; border-top: 1px solid var(--hairline); margin: 26px 0; }
+
+/* keep entries and callouts from splitting awkwardly across pages */
+.je, .principle, .result, .masthead, .signoff, tr { page-break-inside: avoid; }
+h2, h3 { page-break-after: avoid; }
